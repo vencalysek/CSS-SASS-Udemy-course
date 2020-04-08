@@ -1,0 +1,53 @@
+.features {
+    grid-column: center-start / center-end;
+
+    margin: 15rem 0;
+
+    display: grid;
+    //  grid-template-columns: repeat(3, 1fr);
+    //responzivni zpusob, auto-fit --> da boxy na novy radek pokud se nevejdou, tzn pokud by mel byt box uzsi nez 25rem tak ho polozi na novy radek a roztahne na 1fr.
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+
+    grid-gap: 6rem;
+
+    //  feature sekce, ktere mely mene textovych radku (3), mely vetsi vysku prvniho radku. 
+    //  Protoze je defaultne nastavene align-items: strech --> to roztahuje feature box na celou vysku a vyplni celou oblast daneho features boxu. 
+    //  Kdyz nastavim align-items: start -> tak se feature box neroztahne pres celou delku, ale vyplni jen potrebne misto, zace vyplnovat odshora a dole pod textem necha prazdny zbytek 
+    align-items: start;
+
+    
+
+    @media screen and (max-width: $bp-medium) {
+        margin: 7.5rem 0;
+    }
+}
+
+.feature {
+    
+    ////////////////////////////////////////////////////////
+    //  BEZ GRID LAYOUT
+    // float: left;
+    // width: 33.333%;
+    // margin-bottom: 6rem;
+
+
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    column-gap: 2.5rem;
+    row-gap: 1.5rem;
+
+    &__icon {
+        fill: $color-primary;
+        width: 4.5rem;
+        height: 4.5rem;
+        grid-row: 1 / span 2;
+
+        // posunuti ikony nahoru
+        transform: translateY(-1rem);
+    }
+
+    &__text {
+        font-size: 1.7rem;
+        // grid-column: 2 / 3;
+    }
+}

@@ -1,0 +1,43 @@
+*,
+*::after,
+*::before {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: inherit;
+}
+
+html {
+    // Definice jednoho REM
+    /* Browser default font je 16px 62.5% z nej udela 10px se kterymi se dobre pocita */
+    /* Nenastavovat hardcode px do root font size jinak se neda velikost menit v prohlizeci */
+    font-size: 62.5%;                   // 1rem = 10px
+
+    // v pripade ze pisu DESKTOP FIRST (snizuju width)=>  mediaquery zadavat od nejvetsiho, protoze kdyz se potvrdi oba, bude se brat v potaz ten posledni zadany: 700px -> vezme data z tab-land i z tab-port, a proto ze je tab-port posledni, to co se kdyje pouzije z posledniho. kdyby bylo napsane tab-land jako posledni, font-size by byl nakoneec 56.25%, protoze by prepsal tab-port
+
+    @include respond(tab-land) {        // width <1200?
+        font-size: 56.25%;              // 1rem = 9px, 9/16 = 56.25%
+    }
+
+    @include respond(tab-port) {        // width <900?
+        font-size: 50%;                 // 1rem = 8px, 8/16 = 50%
+    }
+
+    @include respond(big-desktop) {
+        font-size: 75%;                  // 1rem = 12px, 12/16 = 75%
+    }
+}
+
+body {
+    box-sizing: border-box;
+    padding: 3rem;
+
+    @include respond(tab-port) {
+        padding: 0;
+    }
+}
+
+// oznaceni textu
+::selection {
+    background-color: $color-primary;
+    color: $color-white;
+}
